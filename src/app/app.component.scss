@@ -1,0 +1,9 @@
+table {
+  width: 100%;
+}
+
+.example-button-row {
+  &:not(:last-of-type) {
+    margin-right: 8px;
+  }
+}
