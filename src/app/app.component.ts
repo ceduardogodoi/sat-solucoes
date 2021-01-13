@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Pessoa } from './models/Pessoa';
 import { PessoaService } from './services/pessoa.service';
 
@@ -10,35 +9,26 @@ import { PessoaService } from './services/pessoa.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public pessoas: Pessoa[];
   public displayedColumns: string[] = ['Nome', 'Data', 'CPF', 'Renda', 'Ações'];
-  public dataSource: MatTableDataSource<Pessoa>;
+  public dataSource: Observable<Pessoa[]>;
 
-  constructor(private service: PessoaService) {}
+  constructor(private _service: PessoaService) {}
+
+  private loadData(): void {
+    this.dataSource = this._service.fetchPessoas();
+  }
 
   public ngOnInit(): void {
-    this.loadTableData();
+    this.loadData();
   }
 
-  private loadTableData(): void {
-    this.service.fetchPessoas().subscribe((pessoas: Pessoa[]) => {
-        this.dataSource = new MatTableDataSource<Pessoa>();
+  public remove(id: number): void {
+    this._service.fetchDeletePessoa(id).subscribe();
 
-        this.populaTabela(pessoas);
-    });
+    this.loadData();
   }
 
-  private populaTabela(dataSource: Pessoa[]): void {
-    this.dataSource.data = dataSource;
-  }
-
-  private editar(id: number): void {
-    alert(`alerta do loko id - ${id}`);
-  }
-
-  private deletar(id: number): void {
-    this.service.fetchDeletePessoa(id).subscribe(console.log);
-
-    this.loadTableData();
+  public edit(id: number): void {
+    alert('edit');
   }
 }

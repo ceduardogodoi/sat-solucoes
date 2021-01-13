@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pessoa } from '../models/Pessoa';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,10 @@ export class PessoaService {
   constructor(private http: HttpClient) {}
 
   fetchPessoas(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>('http://localhost:8080/pessoa');
+    return this.http.get<Pessoa[]>(`${environment.apiUrl}/pessoa`);
   }
 
   fetchDeletePessoa(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/pessoa/${id}`);
+    return this.http.delete<void>(`${environment.apiUrl}/pessoa/${id}`);
   }
 }
