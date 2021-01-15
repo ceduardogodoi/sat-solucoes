@@ -1,0 +1,12 @@
+table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.mat-icon {
+  cursor: pointer;
+
+  &:not(:last-of-type) {
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,86 @@
+<mat-dialog-content>
+  <form #form="ngForm">
+    <!-- <input type="text" name="nome" [(ngModel)]="pessoa.nome" required />
+    <input type="text" name="cpf" [(ngModel)]="pessoa.cpf" required />
+    <input type="text" name="renda" [(ngModel)]="pessoa.renda" required />
+    <input type="text" name="dataCadastro" [(ngModel)]="pessoa.dataCadastro" required />
+
+    <button (click)="print()">Salvar</button> -->
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input
+          #nome
+          matInput
+          type="text"
+          placeholder="Nome"
+          maxlength="50"
+          required
+          pattern="[0-9]"
+        />
+        <mat-hint>
+          <span *ngIf="!nome.validity.valid && nome.value.length"
+            >Codigo en blanco o no válido</span
+          >
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input
+          #cpf
+          matInput
+          name="cpf"
+          type="text"
+          placeholder="CPF"
+          maxlength="14"
+          required
+          pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}"
+          mask="000.000.000-00"
+          [(ngModel)]="pessoa.cpf"
+        />
+        <mat-hint
+          >{{ cpf.value.length }} / 14<br />
+          <span *ngIf="!cpf.validity.valid && cpf.value.length !== 14"
+            >CPF deve conter 11 dígitos</span
+          >
+        </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Renda</mat-label>
+        <input
+          #renda
+          matInput
+          type="number"
+          placeholder="Renda"
+          maxlength="50"
+          required
+          pattern="[0-9]"
+        />
+        <mat-hint
+          >{{ renda.value.length }} / 50<br />
+          <span *ngIf="!renda.validity.valid && renda.value.length"
+            >Codigo en blanco o no válido</span
+          >
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Escolha uma data</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary">Primary</button>
+</mat-dialog-actions>
