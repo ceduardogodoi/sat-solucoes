@@ -11,7 +11,7 @@ import { CreatePessoasComponent } from '../create-pessoas/create-pessoas.compone
 @Component({
   selector: 'app-list-pessoas',
   templateUrl: './list-pessoas.component.html',
-  styleUrls: ['./list-pessoas.component.scss'],
+  styleUrls: ['./list-pessoas.component.scss']
 })
 export class ListPessoasComponent implements OnInit {
   public displayedColumns: string[] = ['Nome', 'Data', 'CPF', 'Renda', 'Ações'];
@@ -28,14 +28,14 @@ export class ListPessoasComponent implements OnInit {
 
     this._dialog.open(CreatePessoasComponent, {
       width: '70%',
-      disableClose: true,
+      disableClose: true
     });
   }
 
   public openCreateDialog(): void {
     const dialogRef = this._dialog.open(CreatePessoasComponent, {
       width: '70%',
-      disableClose: true,
+      disableClose: true
     });
   }
 

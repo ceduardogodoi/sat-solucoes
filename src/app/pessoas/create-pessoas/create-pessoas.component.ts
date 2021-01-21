@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Pessoa } from 'src/app/models/Pessoa';
-import { CpfPipe } from 'src/app/pipes/cpf.pipe';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-pessoas',
   templateUrl: './create-pessoas.component.html',
-  styleUrls: ['./create-pessoas.component.scss'],
+  styleUrls: ['./create-pessoas.component.scss']
 })
-export class CreatePessoasComponent implements OnInit {
-  public pessoa: Pessoa = new Pessoa();
+export class CreatePessoasComponent {
+  public personForm: FormGroup = this._formBuilder.group({
+    nome: [''],
+    dataCadastro: [''],
+    cpf: [''],
+    renda: ['']
+  });
 
-  constructor(private _cpfPipe: CpfPipe) {}
+  constructor(private _formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
-
-  public print(): void {
-    console.log(this.pessoa);
+  public onSubmit(): void {
+    console.log(this.personForm.value);
   }
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
 
 import { ListPessoasComponent } from './pessoas/list-pessoas/list-pessoas.component';
 import { CreatePessoasComponent } from './pessoas/create-pessoas/create-pessoas.component';
@@ -28,12 +28,12 @@ import { CpfPipe } from './pipes/cpf.pipe';
     AppComponent,
     CpfPipe,
     ListPessoasComponent,
-    CreatePessoasComponent,
+    CreatePessoasComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
     MatDialogModule,
@@ -47,9 +47,9 @@ import { CpfPipe } from './pipes/cpf.pipe';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    { provide: CpfPipe },
+    { provide: CpfPipe }
   ],
   exports: [HttpClientModule],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

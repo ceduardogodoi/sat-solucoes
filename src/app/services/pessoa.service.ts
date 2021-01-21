@@ -5,7 +5,7 @@ import { Pessoa } from '../models/Pessoa';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PessoaService {
   constructor(private http: HttpClient) {}
