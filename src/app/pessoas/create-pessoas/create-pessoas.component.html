@@ -6,41 +6,6 @@
 
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>Senha</mat-label>
-        <input
-          formControlName="senha"
-          matInput
-          name="senha"
-          type="password"
-          minlength="3"
-          required
-        />
-        <mat-error *ngIf="controls.senha.errors?.required">
-          Senha é obrigatória
-        </mat-error>
-        <mat-error *ngIf="controls.senha.errors?.minlength">
-          Senha deve conter no mínimo
-          {{ controls.senha.errors.minlength.requiredLength }} caracteres
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Confirmar senha</mat-label>
-        <input
-          formControlName="confirmarSenha"
-          matInput
-          name="confirmarSenha"
-          type="password"
-          required
-        />
-        <mat-error *ngIf="personForm.errors?.confirmPasswordMismatch">
-          Confirmação de senha deve ser igual a senha
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <!-- <div class="form-row">
-      <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
         <input
           formControlName="nome"
@@ -79,7 +44,9 @@
           CPF é obrigatório
         </mat-error>
         <mat-error *ngIf="controls.cpf.errors?.minlength">
-          CPF deve conter {{ controls.cpf.erros.minlength.requiredLength }} dígitos (não contabiliza caracteres especiais)
+          CPF deve conter
+          {{ controls.cpf.errors.minlength.requiredLength }} dígitos (não
+          contabiliza caracteres especiais)
         </mat-error>
       </mat-form-field>
     </div>
@@ -124,7 +91,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </div> -->
+    </div>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
