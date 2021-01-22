@@ -65,6 +65,12 @@
           mask="separator.2"
           thousandSeparator="."
         />
+        <mat-error *ngIf="controls.renda.errors?.required">
+          Renda é obrigatória
+        </mat-error>
+        <mat-error *ngIf="controls.renda.errors?.minRenda">
+          Renda deve ser maior que 0
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
