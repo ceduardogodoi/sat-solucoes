@@ -22,6 +22,6 @@ export class CreatePessoasComponent {
   constructor(private _formBuilder: FormBuilder) {}
 
   public onSubmit(): void {
-    console.log(this.personForm.controls.renda);
+    console.log(this.personForm.controls.dataCadastro);
   }
 }
