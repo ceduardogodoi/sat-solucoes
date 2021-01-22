@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-pessoas',
@@ -14,9 +14,13 @@ export class CreatePessoasComponent {
     renda: ['']
   });
 
+  public get controls(): { [key: string]: AbstractControl } {
+    return this.personForm.controls;
+  }
+
   constructor(private _formBuilder: FormBuilder) {}
 
   public onSubmit(): void {
-    console.log(this.personForm.value);
+    console.log(this.personForm.errors);
   }
 }
