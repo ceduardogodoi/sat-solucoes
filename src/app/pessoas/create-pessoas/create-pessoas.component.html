@@ -3,6 +3,7 @@
     <div class="form-row">
       <h2 mat-dialog-title>Cadastrar Pessoas</h2>
     </div>
+
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
@@ -17,6 +18,13 @@
           required
           pattern="[A-z\s]{3,}"
         />
+        <mat-error *ngIf="controls.nome.errors?.required">
+          Nome é obrigatório
+        </mat-error>
+        <mat-error *ngIf="controls.nome.errors?.minlength">
+          Nome deve ter no mínimo
+          {{ controls.nome.errors.minlength?.requiredLength }} caracteres
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -32,6 +40,9 @@
           pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}"
           mask="000.000.000-00"
         />
+        <mat-error *ngIf="controls.cpf.errors?.required">
+          CPF é obrigatório
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -70,13 +81,6 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="personForm.invalid"
-      type="submit"
-    >
-      Salvar
-    </button>
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
   </mat-dialog-actions>
 </form>
