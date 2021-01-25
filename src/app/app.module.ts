@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -43,6 +44,7 @@ import { CpfPipe } from './pipes/cpf.pipe';
     MatNativeDateModule,
     MatButtonModule,
     MatDividerModule,
+    MatSnackBarModule,
     NgxMaskModule.forRoot()
   ],
   providers: [
