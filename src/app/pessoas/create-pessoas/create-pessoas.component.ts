@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,27 +8,19 @@ import {
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { rendaValidator } from '../../validators/renda.validator';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-pessoas',
   templateUrl: './create-pessoas.component.html',
   styleUrls: ['./create-pessoas.component.scss']
 })
-export class CreatePessoasComponent {
+export class CreatePessoasComponent implements OnInit {
   public personForm: FormGroup = this._formBuilder.group({
-    nome: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-        Validators.pattern(/[A-z\s]{3,}/g)
-      ]
-    ],
+    nome: [''],
     dataCadastro: [''],
     cpf: [''],
-    renda: ['', [rendaValidator()]]
+    renda: ['', Validators.min(1)]
   });
 
   constructor(
@@ -36,6 +28,26 @@ export class CreatePessoasComponent {
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<CreatePessoasComponent>
   ) {}
+
+  ngOnInit(): void {
+    // Validators.required,
+    // Validators.minLength(3),
+    // Validators.maxLength(50),
+    // Validators.pattern(/[A-z\s]{3,}/g)
+
+    this.nome.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((value: string) => {
+        if (this.nome.dirty) {
+          this.nome.setValidators([
+            Validators.required,
+            Validators.minLength(3)
+          ]);
+        }
+
+        this.nome.updateValueAndValidity();
+      });
+  }
 
   public get nome(): AbstractControl {
     return this.personForm.controls.nome;
@@ -51,6 +63,10 @@ export class CreatePessoasComponent {
 
   public get renda(): AbstractControl {
     return this.personForm.controls.renda;
+  }
+
+  public onNomeChange(): void {
+    console.log('onNomeChange');
   }
 
   public openSnackBar(): void {

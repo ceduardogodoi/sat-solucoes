@@ -56,7 +56,6 @@
           matInput
           name="renda"
           type="tel"
-          placeholder="R$ 1000,00"
           maxlength="50"
           required
           pattern="[0-9\.?,?]+"
@@ -67,7 +66,7 @@
         <mat-error *ngIf="renda.errors?.required">
           Renda é obrigatória
         </mat-error>
-        <mat-error *ngIf="renda.errors?.minRenda">
+        <mat-error *ngIf="renda.errors?.min">
           Renda deve ser maior que 0
         </mat-error>
       </mat-form-field>
