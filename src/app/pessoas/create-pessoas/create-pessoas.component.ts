@@ -3,7 +3,8 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  NgForm
+  NgForm,
+  Validators
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +17,15 @@ import { rendaValidator } from '../../validators/renda.validator';
 })
 export class CreatePessoasComponent {
   public personForm: FormGroup = this._formBuilder.group({
-    nome: [''],
+    nome: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+        Validators.pattern(/[A-z\s]{3,}/g)
+      ]
+    ],
     dataCadastro: [''],
     cpf: [''],
     renda: ['', [rendaValidator()]]
@@ -41,6 +50,8 @@ export class CreatePessoasComponent {
   }
 
   public onClose(): void {
+    console.log(this.controls.nome.errors);
+
     this.dialogRef.close();
   }
 

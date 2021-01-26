@@ -13,10 +13,6 @@
           name="nome"
           type="text"
           placeholder="John Doe"
-          minlength="3"
-          maxlength="50"
-          required
-          pattern="[A-z\s]{3,}"
         />
         <mat-error *ngIf="controls.nome.errors?.required">
           Nome é obrigatório
@@ -24,6 +20,9 @@
         <mat-error *ngIf="controls.nome.errors?.minlength">
           Nome deve ter no mínimo
           {{ controls.nome.errors.minlength.requiredLength }} caracteres
+        </mat-error>
+        <mat-error *ngIf="controls.nome.errors?.pattern">
+          Nome deve conter somente letras
         </mat-error>
       </mat-form-field>
 
