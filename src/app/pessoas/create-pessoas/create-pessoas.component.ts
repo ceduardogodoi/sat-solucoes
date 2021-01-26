@@ -5,6 +5,7 @@ import {
   FormGroup,
   NgForm
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { rendaValidator } from '../../validators/renda.validator';
 
@@ -23,7 +24,8 @@ export class CreatePessoasComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<CreatePessoasComponent>
   ) {}
 
   public get controls(): { [key: string]: AbstractControl } {
@@ -39,7 +41,7 @@ export class CreatePessoasComponent {
   }
 
   public onClose(): void {
-    console.log('asdasd');
+    this.dialogRef.close();
   }
 
   public onSubmit(form: NgForm): void {

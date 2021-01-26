@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
 import { MatDialog } from '@angular/material/dialog';
-
+import { Observable } from 'rxjs';
 import { Pessoa } from 'src/app/models/Pessoa';
 import { PessoaService } from 'src/app/services/pessoa.service';
-
 import { CreatePessoasComponent } from '../create-pessoas/create-pessoas.component';
 
 @Component({
@@ -16,6 +13,9 @@ import { CreatePessoasComponent } from '../create-pessoas/create-pessoas.compone
 export class ListPessoasComponent implements OnInit {
   public displayedColumns: string[] = ['Nome', 'Data', 'CPF', 'Renda', 'Ações'];
   public dataSource$: Observable<Pessoa[]>;
+
+  public animal: string;
+  public name: string;
 
   constructor(private _service: PessoaService, private _dialog: MatDialog) {}
 
@@ -32,7 +32,11 @@ export class ListPessoasComponent implements OnInit {
   public openDialog(): void {
     this._dialog.open(CreatePessoasComponent, {
       width: '70%',
-      disableClose: true
+      disableClose: true,
+      data: {
+        name: this.name,
+        animal: this.animal
+      }
     });
   }
 }
