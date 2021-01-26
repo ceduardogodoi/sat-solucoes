@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { validateAfterDirty } from 'src/app/validators/validate-after-dirty';
 
 @Component({
   selector: 'app-create-pessoas',
@@ -20,7 +20,7 @@ export class CreatePessoasComponent implements OnInit {
     nome: [''],
     dataCadastro: [''],
     cpf: [''],
-    renda: ['', Validators.min(1)]
+    renda: ['']
   });
 
   constructor(
@@ -29,24 +29,28 @@ export class CreatePessoasComponent implements OnInit {
     public dialogRef: MatDialogRef<CreatePessoasComponent>
   ) {}
 
-  ngOnInit(): void {
-    // Validators.required,
-    // Validators.minLength(3),
-    // Validators.maxLength(50),
-    // Validators.pattern(/[A-z\s]{3,}/g)
+  private _applyValidations(): void {
+    validateAfterDirty(this.nome, [
+      Validators.required,
+      Validators.pattern(/[A-z\s]{3,}/)
+    ]);
 
-    this.nome.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe((value: string) => {
-        if (this.nome.dirty) {
-          this.nome.setValidators([
-            Validators.required,
-            Validators.minLength(3)
-          ]);
-        }
+    validateAfterDirty(this.cpf, [
+      Validators.required,
+      Validators.pattern(/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/)
+    ]);
 
-        this.nome.updateValueAndValidity();
-      });
+    validateAfterDirty(this.renda, [
+      Validators.required,
+      Validators.min(1),
+      Validators.pattern(/[0-9\.?,?]+/)
+    ]);
+
+    validateAfterDirty(this.dataCadastro, [Validators.required]);
+  }
+
+  public ngOnInit(): void {
+    this._applyValidations();
   }
 
   public get nome(): AbstractControl {
@@ -65,10 +69,6 @@ export class CreatePessoasComponent implements OnInit {
     return this.personForm.controls.renda;
   }
 
-  public onNomeChange(): void {
-    console.log('onNomeChange');
-  }
-
   public openSnackBar(): void {
     this._snackBar.open('Pessoa cadastrada com sucesso', 'Fechar', {
       duration: 1500,
@@ -78,7 +78,7 @@ export class CreatePessoasComponent implements OnInit {
   }
 
   public onClose(): void {
-    console.log(this.nome.errors);
+    console.log(this.cpf.errors);
 
     this.dialogRef.close();
   }
