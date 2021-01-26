@@ -26,26 +26,13 @@ export class ListPessoasComponent implements OnInit {
   public ngOnInit(): void {
     this.loadData();
 
+    this.openDialog();
+  }
+
+  public openDialog(): void {
     this._dialog.open(CreatePessoasComponent, {
       width: '70%',
       disableClose: true
     });
-  }
-
-  public openCreateDialog(): void {
-    const dialogRef = this._dialog.open(CreatePessoasComponent, {
-      width: '70%',
-      disableClose: true
-    });
-  }
-
-  public removePerson(id: number): void {
-    this._service.fetchDeletePessoa(id).subscribe();
-
-    this.loadData();
-  }
-
-  public editPerson(id: number): void {
-    alert('edit');
   }
 }
