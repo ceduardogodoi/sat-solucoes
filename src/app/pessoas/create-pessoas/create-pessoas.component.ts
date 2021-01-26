@@ -37,8 +37,20 @@ export class CreatePessoasComponent {
     public dialogRef: MatDialogRef<CreatePessoasComponent>
   ) {}
 
-  public get controls(): { [key: string]: AbstractControl } {
-    return this.personForm.controls;
+  public get nome(): AbstractControl {
+    return this.personForm.controls.nome;
+  }
+
+  public get dataCadastro(): AbstractControl {
+    return this.personForm.controls.dataCadastro;
+  }
+
+  public get cpf(): AbstractControl {
+    return this.personForm.controls.cpf;
+  }
+
+  public get renda(): AbstractControl {
+    return this.personForm.controls.renda;
   }
 
   public openSnackBar(): void {
@@ -50,7 +62,7 @@ export class CreatePessoasComponent {
   }
 
   public onClose(): void {
-    console.log(this.controls.nome.errors);
+    console.log(this.nome.errors);
 
     this.dialogRef.close();
   }
