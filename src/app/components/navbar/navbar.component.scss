@@ -1,3 +1,33 @@
+.mat-toolbar {
+  @media only screen and (min-width: 1440px) {
+    justify-content: center;
+  }
+
+  nav {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (min-width: 1440px) {
+      width: 1024px;
+    }
+  }
+}
+
 img {
-  height: 40px;
+  height: 64px;
+}
+
+a {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+ul li {
+  display: inline;
+
+  &:not(:last-of-type) {
+    margin-right: 15px;
+  }
 }
