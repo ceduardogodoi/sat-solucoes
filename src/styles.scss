@@ -20,6 +20,10 @@ $sat-solucoes-theme: mat-light-theme(
 
 @include angular-material-theme($sat-solucoes-theme);
 
+* {
+  font-family: 'Lato', 'Arial', sans-serif;
+}
+
 html,
 body {
   height: 100%;
@@ -27,5 +31,4 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
