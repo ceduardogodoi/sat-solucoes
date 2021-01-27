@@ -6,8 +6,9 @@ import {
   NgForm,
   Validators
 } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogConfirmacaoComponent } from '../dialog-confirmacao/dialog-confirmacao.component';
 
 @Component({
   selector: 'app-create-pessoas',
@@ -31,7 +32,8 @@ export class CreatePessoasComponent {
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<CreatePessoasComponent>
+    private _dialogRef: MatDialogRef<CreatePessoasComponent>,
+    private _dialog: MatDialog
   ) {}
 
   public get nome(): AbstractControl {
@@ -72,16 +74,15 @@ export class CreatePessoasComponent {
 
   public onClose(): void {
     if (this._hasFilledFields()) {
-      const shouldClose: boolean = confirm('Deseja realmente fechar?');
-
-      if (shouldClose) {
-        this.dialogRef.close();
-      }
+      this._dialog.open(DialogConfirmacaoComponent, {
+        width: '35%',
+        data: this._dialogRef
+      });
 
       return;
     }
 
-    this.dialogRef.close();
+    this._dialogRef.close();
   }
 
   public onSubmit(form: NgForm): void {
