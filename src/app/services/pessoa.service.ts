@@ -10,11 +10,11 @@ import { environment } from 'src/environments/environment';
 export class PessoaService {
   constructor(private http: HttpClient) {}
 
-  fetchPessoas(): Observable<Pessoa[]> {
+  getPessoas(): Observable<Pessoa[]> {
     return this.http.get<Pessoa[]>(`${environment.apiUrl}/pessoa`);
   }
 
-  fetchDeletePessoa(id: number): Observable<void> {
+  deletePessoa(id: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/pessoa/${id}`);
   }
 }

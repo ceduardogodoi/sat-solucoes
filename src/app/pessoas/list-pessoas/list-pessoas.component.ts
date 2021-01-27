@@ -20,7 +20,7 @@ export class ListPessoasComponent implements OnInit {
   constructor(private _service: PessoaService, private _dialog: MatDialog) {}
 
   private loadData(): void {
-    this.dataSource$ = this._service.fetchPessoas();
+    this.dataSource$ = this._service.getPessoas();
   }
 
   public ngOnInit(): void {
@@ -30,11 +30,7 @@ export class ListPessoasComponent implements OnInit {
   public openDialog(): void {
     this._dialog.open(CreatePessoasComponent, {
       width: '60%',
-      disableClose: true,
-      data: {
-        name: this.name,
-        animal: this.animal
-      }
+      disableClose: true
     });
   }
 }
