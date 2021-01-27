@@ -25,8 +25,6 @@ export class ListPessoasComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loadData();
-
-    this.openDialog();
   }
 
   public openDialog(): void {

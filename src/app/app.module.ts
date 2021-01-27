@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
@@ -19,6 +20,7 @@ import { CreatePessoasComponent } from './pessoas/create-pessoas/create-pessoas.
 import { DialogConfirmacaoComponent } from './pessoas/dialog-confirmacao/dialog-confirmacao.component';
 import { ListPessoasComponent } from './pessoas/list-pessoas/list-pessoas.component';
 import { CpfPipe } from './pipes/cpf.pipe';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { CpfPipe } from './pipes/cpf.pipe';
     CpfPipe,
     ListPessoasComponent,
     CreatePessoasComponent,
-    DialogConfirmacaoComponent
+    DialogConfirmacaoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { CpfPipe } from './pipes/cpf.pipe';
     MatButtonModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatToolbarModule,
     NgxMaskModule.forRoot()
   ],
   providers: [
