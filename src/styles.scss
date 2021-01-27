@@ -4,7 +4,7 @@
 @include mat-core();
 
 $sat-solucoes-primary: mat-palette($sat-solucoes-primary);
-$sat-solucoes-accent: mat-palette($mat-pink, A200, A100, A400);
+$sat-solucoes-accent: mat-palette($sat-solucoes-accent, A200, A100, A400);
 
 $sat-solucoes-warn: mat-palette($mat-red);
 

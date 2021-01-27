@@ -1,9 +1,10 @@
 <button
-  class="example-button-row"
-  mat-icon-button
+  mat-raised-button
+  color="primary"
   aria-label="add"
   (click)="openDialog()"
 >
+  Adicionar
   <mat-icon>add</mat-icon>
 </button>
 
@@ -11,7 +12,6 @@
   *ngIf="(dataSource$ | async)?.length"
   mat-table
   [dataSource]="dataSource$"
-  class="mat-elevation-z8"
 >
   <ng-container matColumnDef="Nome">
     <th mat-header-cell *matHeaderCellDef>Nome</th>
