@@ -31,7 +31,7 @@ export class ListPessoasComponent implements OnInit {
 
   public openDialog(): void {
     this._dialog.open(CreatePessoasComponent, {
-      width: '70%',
+      width: '60%',
       disableClose: true,
       data: {
         name: this.name,

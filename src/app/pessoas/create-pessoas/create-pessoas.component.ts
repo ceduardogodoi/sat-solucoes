@@ -75,7 +75,6 @@ export class CreatePessoasComponent {
   public onClose(): void {
     if (this._hasFilledFields()) {
       this._dialog.open(DialogConfirmacaoComponent, {
-        width: '35%',
         data: this._dialogRef
       });
 
