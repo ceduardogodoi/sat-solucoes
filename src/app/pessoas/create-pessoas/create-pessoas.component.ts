@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,19 +8,24 @@ import {
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { validateAfterDirty } from 'src/app/validators/validate-after-dirty';
 
 @Component({
   selector: 'app-create-pessoas',
   templateUrl: './create-pessoas.component.html',
   styleUrls: ['./create-pessoas.component.scss']
 })
-export class CreatePessoasComponent implements OnInit {
+export class CreatePessoasComponent {
   public personForm: FormGroup = this._formBuilder.group({
-    nome: [''],
-    dataCadastro: [''],
-    cpf: [''],
-    renda: ['']
+    nome: ['', [Validators.required, Validators.minLength(3)]],
+    dataCadastro: ['', Validators.required],
+    cpf: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/)
+      ]
+    ],
+    renda: ['', [Validators.required, Validators.min(1)]]
   });
 
   constructor(
@@ -28,30 +33,6 @@ export class CreatePessoasComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<CreatePessoasComponent>
   ) {}
-
-  private _applyValidations(): void {
-    validateAfterDirty(this.nome, [
-      Validators.required,
-      Validators.pattern(/[A-z\s]{3,}/)
-    ]);
-
-    validateAfterDirty(this.cpf, [
-      Validators.required,
-      Validators.pattern(/[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}/)
-    ]);
-
-    validateAfterDirty(this.renda, [
-      Validators.required,
-      Validators.min(1),
-      Validators.pattern(/[0-9\.?,?]+/)
-    ]);
-
-    validateAfterDirty(this.dataCadastro, [Validators.required]);
-  }
-
-  public ngOnInit(): void {
-    this._applyValidations();
-  }
 
   public get nome(): AbstractControl {
     return this.personForm.controls.nome;
@@ -77,15 +58,33 @@ export class CreatePessoasComponent implements OnInit {
     });
   }
 
+  private _hasFilledFields(): boolean {
+    for (const key in this.personForm.value) {
+      const value: string = this.personForm.value[key] as string;
+
+      if (value) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public onClose(): void {
-    console.log(this.cpf.errors);
+    if (this._hasFilledFields()) {
+      const shouldClose: boolean = confirm('Deseja realmente fechar?');
+
+      if (shouldClose) {
+        this.dialogRef.close();
+      }
+
+      return;
+    }
 
     this.dialogRef.close();
   }
 
   public onSubmit(form: NgForm): void {
-    console.log(this.personForm.value);
-
     this.openSnackBar();
 
     form.reset();

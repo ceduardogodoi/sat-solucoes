@@ -13,10 +13,13 @@
           name="nome"
           type="text"
           maxlength="50"
-          placeholder="John Doe"
         />
-        <mat-error *ngIf="nome.errors?.pattern || nome.errors?.required">
-          Nome deve ter 3 ou mais caracteres
+        <mat-error *ngIf="nome.errors?.required">
+          Nome é obrigatório
+        </mat-error>
+        <mat-error *ngIf="nome.errors?.minlength">
+          Nome deve conter no mínimo
+          {{ nome.errors.minlength.requiredLength }} caracteres
         </mat-error>
       </mat-form-field>
 
@@ -27,10 +30,10 @@
           matInput
           name="cpf"
           type="tel"
-          placeholder="012.345.678-90"
           mask="000.000.000-00"
         />
-        <mat-error *ngIf="cpf.errors?.required || cpf.errors?.pattern">
+        <mat-error *ngIf="cpf.errors?.required"> CPF é obrigatório </mat-error>
+        <mat-error *ngIf="cpf.errors?.pattern">
           CPF deve ter o formato correto
         </mat-error>
       </mat-form-field>
@@ -49,8 +52,11 @@
           mask="separator.2"
           thousandSeparator="."
         />
-        <mat-error *ngIf="renda.errors?.required || renda.errors?.min">
-          Renda deve ser maior que 0
+        <mat-error *ngIf="renda.errors?.required">
+          Renda é obrigatório
+        </mat-error>
+        <mat-error *ngIf="renda.errors?.min">
+          Renda deve ser maior que {{ renda.errors.min.min - 1 }}
         </mat-error>
       </mat-form-field>
 
@@ -60,7 +66,6 @@
           formControlName="dataCadastro"
           matInput
           name="dataCadastro"
-          placeholder="01/01/1990"
           [matDatepicker]="picker"
         />
         <mat-error *ngIf="dataCadastro.errors?.required">
