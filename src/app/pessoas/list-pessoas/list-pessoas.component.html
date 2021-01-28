@@ -12,6 +12,7 @@
   *ngIf="(dataSource$ | async)?.length"
   mat-table
   [dataSource]="dataSource$"
+  class="mat-elevation-z28"
 >
   <ng-container matColumnDef="Nome">
     <th mat-header-cell *matHeaderCellDef>Nome</th>
