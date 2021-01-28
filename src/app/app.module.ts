@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
@@ -46,6 +47,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatDividerModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatMenuModule,
     NgxMaskModule.forRoot()
   ],
   providers: [

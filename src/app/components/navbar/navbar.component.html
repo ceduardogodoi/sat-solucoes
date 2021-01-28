@@ -6,19 +6,35 @@
     />
     <ul>
       <li>
-        <a mat-button href=""><span>Home</span></a>
+        <a mat-button href="https://satsolucoes.com.br/"><span>Home</span></a>
       </li>
       <li>
-        <a mat-button href=""><span>A empresa</span></a>
+        <a mat-button href="https://satsolucoes.com.br/a-empresa/"
+          ><span>A empresa</span></a
+        >
       </li>
       <li>
-        <a mat-button href=""><span>Produtos</span></a>
+        <button mat-button [matMenuTriggerFor]="menu">Produtos</button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item href="">Apontamento de tarefas</a>
+          <a mat-menu-item href="">Ferramentaria</a>
+          <a mat-menu-item href="">Atendimento</a>
+          <a mat-menu-item href="">Saúde e segurança do trabalho</a>
+          <a mat-menu-item href="">Revistamento de trens</a>
+        </mat-menu>
+        <!-- <a mat-button href="https://satsolucoes.com.br/o-sat/#"
+          ><span>Produtos</span></a
+        > -->
       </li>
       <li>
-        <a mat-button href=""><span>Blog</span></a>
+        <a mat-button href="https://satsolucoes.com.br/blog/"
+          ><span>Blog</span></a
+        >
       </li>
       <li>
-        <a mat-button href=""><span>Contato</span></a>
+        <a mat-button href="https://satsolucoes.com.br/contato/"
+          ><span>Contato</span></a
+        >
       </li>
     </ul>
   </nav>

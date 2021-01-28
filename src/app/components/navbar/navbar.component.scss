@@ -26,4 +26,12 @@ a {
 
 ul li {
   display: inline;
+
+  button {
+    text-transform: uppercase;
+  }
+}
+
+.mat-menu-item {
+  color: #333;
 }
