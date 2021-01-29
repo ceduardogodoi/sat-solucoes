@@ -24,10 +24,12 @@ $sat-solucoes-theme: mat-light-theme(
   font-family: 'Lato', 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  height: 100vh;
 }
 
 a,
