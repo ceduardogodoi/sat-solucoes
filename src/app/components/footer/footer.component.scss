@@ -1,4 +1,8 @@
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   & > .mat-toolbar {
     height: fit-content;
 
@@ -14,7 +18,7 @@ img {
 
 .footer-container {
   display: flex;
-  padding: 60px 0;
+  padding: 30px 0;
 
   @media only screen and (min-width: 1440px) {
     width: 1024px;
