@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
@@ -50,6 +51,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatMenuModule,
+    MatCardModule,
     NgxMaskModule.forRoot()
   ],
   providers: [
