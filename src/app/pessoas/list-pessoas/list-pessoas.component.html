@@ -36,10 +36,17 @@
     <ng-container matColumnDef="Ações">
       <th mat-header-cell *matHeaderCellDef>Ações</th>
       <td mat-cell *matCellDef="let pessoa">
-        <mat-icon aria-hidden="false" aria-label="Ícone de X">remove</mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Ícone de lápis">
-          edit
-        </mat-icon>
+        <button
+          class="table__actions--btn-remove"
+          mat-mini-fab
+          color="primary"
+          aria-label="Botão com um sinal de menos"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Botão com um lápis">
+          <mat-icon>edit</mat-icon>
+        </button>
       </td>
     </ng-container>
 
