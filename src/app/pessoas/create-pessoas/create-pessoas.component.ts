@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Pessoa } from 'src/app/models/Pessoa';
+import { PessoaService } from 'src/app/services/pessoa.service';
 import { DialogConfirmacaoComponent } from '../dialog-confirmacao/dialog-confirmacao.component';
 
 @Component({
@@ -33,7 +35,8 @@ export class CreatePessoasComponent {
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private _dialogRef: MatDialogRef<CreatePessoasComponent>,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _service: PessoaService
   ) {}
 
   public get nome(): AbstractControl {
@@ -52,8 +55,8 @@ export class CreatePessoasComponent {
     return this.personForm.controls.renda;
   }
 
-  public openSnackBar(): void {
-    this._snackBar.open('Pessoa cadastrada com sucesso', 'Fechar', {
+  public openSnackBar(nome: string): void {
+    this._snackBar.open(`${nome} cadastrado(a) com sucesso`, 'Fechar', {
       duration: 1500,
       horizontalPosition: 'center',
       verticalPosition: 'top'
@@ -62,7 +65,7 @@ export class CreatePessoasComponent {
 
   private _hasFilledFields(): boolean {
     for (const key in this.personForm.value) {
-      const value: string = this.personForm.value[key] as string;
+      const value = this.personForm.value[key] as string;
 
       if (value) {
         return true;
@@ -85,7 +88,9 @@ export class CreatePessoasComponent {
   }
 
   public onSubmit(form: NgForm): void {
-    this.openSnackBar();
+    this._service
+      .createPessoa(this.personForm.value as Pessoa)
+      .subscribe(pessoa => this.openSnackBar(pessoa.nome));
 
     form.reset();
   }
