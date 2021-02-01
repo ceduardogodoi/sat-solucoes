@@ -8,30 +8,56 @@
     </a>
     <ul>
       <li>
-        <a mat-button href="https://satsolucoes.com.br/"><span>Home</span></a>
+        <a
+          class="toolbar__menu-link"
+          mat-button
+          href="https://satsolucoes.com.br/"
+          ><span>Home</span></a
+        >
       </li>
       <li>
-        <a mat-button href="https://satsolucoes.com.br/a-empresa/"
+        <a
+          class="toolbar__menu-link"
+          mat-button
+          href="https://satsolucoes.com.br/a-empresa/"
           ><span>A empresa</span></a
         >
       </li>
       <li>
-        <button mat-button [matMenuTriggerFor]="menu">Produtos</button>
+        <button
+          class="toolbar__menu-link"
+          mat-button
+          [matMenuTriggerFor]="menu"
+        >
+          Produtos
+        </button>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item href="">Apontamento de tarefas</a>
-          <a mat-menu-item href="">Ferramentaria</a>
-          <a mat-menu-item href="">Atendimento</a>
-          <a mat-menu-item href="">Saúde e segurança do trabalho</a>
-          <a mat-menu-item href="">Revistamento de trens</a>
+          <a class="toolbar__menu-link" mat-menu-item href=""
+            >Apontamento de tarefas</a
+          >
+          <a class="toolbar__menu-link" mat-menu-item href="">Ferramentaria</a>
+          <a class="toolbar__menu-link" mat-menu-item href="">Atendimento</a>
+          <a class="toolbar__menu-link" mat-menu-item href=""
+            >Saúde e segurança do trabalho</a
+          >
+          <a class="toolbar__menu-link" mat-menu-item href=""
+            >Revistamento de trens</a
+          >
         </mat-menu>
       </li>
       <li>
-        <a mat-button href="https://satsolucoes.com.br/blog/"
+        <a
+          class="toolbar__menu-link"
+          mat-button
+          href="https://satsolucoes.com.br/blog/"
           ><span>Blog</span></a
         >
       </li>
       <li>
-        <a mat-button href="https://satsolucoes.com.br/contato/"
+        <a
+          class="toolbar__menu-link"
+          mat-button
+          href="https://satsolucoes.com.br/contato/"
           ><span>Contato</span></a
         >
       </li>

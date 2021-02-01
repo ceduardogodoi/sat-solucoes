@@ -44,3 +44,11 @@ ul li {
 .mat-menu-item {
   color: #333;
 }
+
+.toolbar__menu-link {
+  &:hover {
+    color: #27b57a;
+
+    transition: color 0.2 ease-in-out;
+  }
+}
