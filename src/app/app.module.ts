@@ -23,7 +23,6 @@ import { DialogConfirmacaoComponent } from './pessoas/dialog-confirmacao/dialog-
 import { ListPessoasComponent } from './pessoas/list-pessoas/list-pessoas.component';
 import { CpfPipe } from './pipes/cpf.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ListPessoasComponent,
     CreatePessoasComponent,
     DialogConfirmacaoComponent,
-    NavbarComponent,
-    FooterComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
