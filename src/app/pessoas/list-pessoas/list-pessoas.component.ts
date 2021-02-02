@@ -14,9 +14,6 @@ export class ListPessoasComponent implements OnInit {
   public displayedColumns: string[] = ['Nome', 'Data', 'CPF', 'Renda', 'Ações'];
   public dataSource$: Observable<Pessoa[]>;
 
-  public animal: string;
-  public name: string;
-
   constructor(private _service: PessoaService, private _dialog: MatDialog) {}
 
   private loadData(): void {
@@ -32,5 +29,11 @@ export class ListPessoasComponent implements OnInit {
       width: '60%',
       disableClose: true
     });
+  }
+
+  public deletePessoa(id: number): void {
+    this._service.deletePessoa(id).subscribe();
+
+    this.loadData();
   }
 }

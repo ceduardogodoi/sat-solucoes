@@ -8,17 +8,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PessoaService {
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   public getPessoas(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(`${environment.apiUrl}/pessoa`);
+    return this._http.get<Pessoa[]>(`${environment.apiUrl}/pessoa`);
   }
 
   public createPessoa(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(`${environment.apiUrl}/pessoa`, pessoa);
+    return this._http.post<Pessoa>(`${environment.apiUrl}/pessoa`, pessoa);
   }
 
   public deletePessoa(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/pessoa/${id}`);
+    return this._http.delete<void>(`${environment.apiUrl}/pessoa/${id}`);
   }
 }
