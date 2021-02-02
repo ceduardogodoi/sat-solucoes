@@ -25,15 +25,29 @@ export class ListPessoasComponent implements OnInit {
   }
 
   public openDialog(): void {
-    this._dialog.open(CreatePessoasComponent, {
-      width: '60%',
-      disableClose: true
-    });
+    this._dialog
+      .open(CreatePessoasComponent, {
+        width: '60%',
+        disableClose: true
+      })
+      .afterClosed()
+      .subscribe(() => this.loadData());
   }
 
   public deletePessoa(id: number): void {
     this._service.deletePessoa(id).subscribe();
 
     this.loadData();
+  }
+
+  public editPessoa(pessoa: Pessoa): void {
+    this._dialog
+      .open(CreatePessoasComponent, {
+        width: '60%',
+        disableClose: true,
+        data: pessoa
+      })
+      .afterClosed()
+      .subscribe(() => this.loadData());
   }
 }

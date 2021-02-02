@@ -45,7 +45,12 @@
         >
           <mat-icon>remove</mat-icon>
         </button>
-        <button mat-mini-fab color="primary" aria-label="Botão com um lápis">
+        <button
+          mat-mini-fab
+          color="primary"
+          aria-label="Botão com um lápis"
+          (click)="editPessoa(pessoa)"
+        >
           <mat-icon>edit</mat-icon>
         </button>
       </td>

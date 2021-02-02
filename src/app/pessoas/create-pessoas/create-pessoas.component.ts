@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -6,7 +6,11 @@ import {
   NgForm,
   Validators
 } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Pessoa } from 'src/app/models/Pessoa';
 import { PessoaService } from 'src/app/services/pessoa.service';
@@ -17,7 +21,7 @@ import { DialogConfirmacaoComponent } from '../dialog-confirmacao/dialog-confirm
   templateUrl: './create-pessoas.component.html',
   styleUrls: ['./create-pessoas.component.scss']
 })
-export class CreatePessoasComponent {
+export class CreatePessoasComponent implements OnInit {
   public personForm: FormGroup = this._formBuilder.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
     dataCadastro: ['', Validators.required],
@@ -36,8 +40,18 @@ export class CreatePessoasComponent {
     private _snackBar: MatSnackBar,
     private _dialogRef: MatDialogRef<CreatePessoasComponent>,
     private _dialog: MatDialog,
-    private _service: PessoaService
+    private _service: PessoaService,
+    @Inject(MAT_DIALOG_DATA) private _data: Pessoa
   ) {}
+
+  ngOnInit(): void {
+    if (this._data) {
+      this.nome.setValue(this._data.nome);
+      this.cpf.setValue(this._data.cpf);
+      this.renda.setValue(this._data.renda);
+      this.dataCadastro.setValue(this._data.dataCadastro);
+    }
+  }
 
   public get nome(): AbstractControl {
     return this.personForm.controls.nome;
@@ -56,11 +70,15 @@ export class CreatePessoasComponent {
   }
 
   public openSnackBar(nome: string): void {
-    this._snackBar.open(`${nome} cadastrado(a) com sucesso`, 'Fechar', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    });
+    this._snackBar.open(
+      `${nome} ${this._data ? 'atualizado(a)' : 'cadastrado(a)'} com sucesso`,
+      'Fechar',
+      {
+        duration: 1500,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      }
+    );
   }
 
   private _hasFilledFields(): boolean {
@@ -88,9 +106,23 @@ export class CreatePessoasComponent {
   }
 
   public onSubmit(form: NgForm): void {
-    this._service
-      .createPessoa(this.personForm.value as Pessoa)
-      .subscribe(pessoa => this.openSnackBar(pessoa.nome));
+    const pessoa: Pessoa = {
+      id: this._data?.id,
+      cpf: this.cpf.value,
+      nome: this.nome.value,
+      renda: this.renda.value,
+      dataCadastro: this.dataCadastro.value
+    };
+
+    if (this._data?.id) {
+      this._service
+        .updatePessoa(pessoa)
+        .subscribe(pessoa => this.openSnackBar(pessoa.nome));
+    } else {
+      this._service
+        .createPessoa(this.personForm.value as Pessoa)
+        .subscribe(pessoa => this.openSnackBar(pessoa.nome));
+    }
 
     form.reset();
   }

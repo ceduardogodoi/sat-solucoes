@@ -18,6 +18,13 @@ export class PessoaService {
     return this._http.post<Pessoa>(`${environment.apiUrl}/pessoa`, pessoa);
   }
 
+  public updatePessoa(pessoa: Pessoa): Observable<Pessoa> {
+    return this._http.put<Pessoa>(
+      `${environment.apiUrl}/pessoa/${pessoa.id}`,
+      pessoa
+    );
+  }
+
   public deletePessoa(id: number): Observable<void> {
     return this._http.delete<void>(`${environment.apiUrl}/pessoa/${id}`);
   }
