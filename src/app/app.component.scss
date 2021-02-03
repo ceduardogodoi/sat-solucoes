@@ -1,11 +1,12 @@
 main {
   display: flex;
+  height: calc(100% - 94px);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
 
   div {
+    height: inherit;
     @media only screen and (min-width: 1440px) {
       width: 1024px;
     }

@@ -1,7 +1,15 @@
 .mat-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   h3 {
     text-align: center;
   }
+}
+
+.mat-card-content {
+  flex-grow: 1;
 }
 
 table.mat-table {
