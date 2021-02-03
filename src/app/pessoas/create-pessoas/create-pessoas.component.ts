@@ -74,7 +74,7 @@ export class CreatePessoasComponent implements OnInit {
       `${nome} ${this._data ? 'atualizado(a)' : 'cadastrado(a)'} com sucesso`,
       'Fechar',
       {
-        duration: 1500,
+        duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
       }

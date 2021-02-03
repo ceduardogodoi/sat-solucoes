@@ -3,6 +3,10 @@ table.mat-table {
   margin: 30px 0;
 }
 
+.mat-row {
+  height: 60px;
+}
+
 .table__actions--btn-remove {
   margin-right: 5px;
   background: red;
