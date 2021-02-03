@@ -35,9 +35,7 @@ export class ListPessoasComponent implements OnInit {
   }
 
   public deletePessoa(id: number): void {
-    this._service.deletePessoa(id).subscribe();
-
-    this.loadData();
+    this._service.deletePessoa(id).subscribe(() => this.loadData());
   }
 
   public editPessoa(pessoa: Pessoa): void {

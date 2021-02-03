@@ -3,8 +3,12 @@
     <mat-card-title>Lista de pessoas</mat-card-title>
   </mat-card-header>
 
+  <h3 *ngIf="(dataSource$ | async)?.length === 0">
+    Não há pessoas registradas
+  </h3>
+
   <table
-    *ngIf="(dataSource$ | async)?.length"
+    *ngIf="(dataSource$ | async)?.length > 0"
     mat-table
     [dataSource]="dataSource$"
     class="mat-elevation-z8"
